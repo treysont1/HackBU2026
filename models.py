@@ -11,6 +11,7 @@ class StudySession(db.Model):
     title = db.Column(db.String(100), nullable=False)
     subject = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
+    time = db.Column(db.DateTime)
 
     description = db.Column(db.String(200))
 
