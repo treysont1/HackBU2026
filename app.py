@@ -1,7 +1,7 @@
 from flask import Flask, request, render_template, redirect, session, flash
 from flask_scss import Scss
 from dotenv import load_dotenv
-from models import db, User, Posts
+from models import db, User, Posts, StudySession
 import os
 
 app = Flask(__name__)
