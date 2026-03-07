@@ -1,10 +1,12 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, redirect, session, flash
 from flask_scss import Scss
-from models import db
+from dotenv import load_dotenv
+from models import db, User, Posts
 import os
 
 app = Flask(__name__)
 
+load_dotenv(dotenv_path=".env")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv('SQLALCHEMY_DATABASE_URI')
 app.secret_key = os.getenv("SECRET_KEY")
 
@@ -15,7 +17,7 @@ Scss(app)
 
 @app.route("/")
 def index():
-    return "hi"
+    return render_template("index.html")
 
 
 
