@@ -54,3 +54,31 @@ a{
   /*justify-content: center;!-->*/
   justify-content: space-evenly;
 }
+
+// .session-card {
+//   background: white;
+//   border-radius: 10px;
+//   padding: 16px;
+//   margin-bottom: 12px;
+//   box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+//   border: 1px solid #eee;
+// }
+.session-card {
+  aspect-ratio: 1 / 1; /* makes the card square */
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 16px;
+  background: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.session-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+  
+.session-card:hover {
+  transform: translateY(-4px);
+  transition: 0.2s;
+}
