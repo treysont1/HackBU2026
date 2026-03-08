@@ -10,11 +10,15 @@
         <p><b>Time: </b>{{session.time.strftime("%b %d • %I:%M %p")}}</p>
         <p>{{session.participants}}/{{session.capacity}} Participants</p>
 
-        <form action="" method="POST" novalidate>
-        {{ form.hidden_tag() }}
+        <form action="/join_session/{{session.id}}" method="POST" novalidate class="btn-join">
+        {{ join_form.hidden_tag() }}
         <p>
-            {{ form.submit(value="Request To Join" if session.request_only else "Join")}} <br>
+            {{ join_form.submit(value="Request To Join" if session.request_only else "Join", class="btn-join")}} <br>
         </p>
+        </form>
+        <form action="/delete_session/{{session.id}}" method="POST" class="btn-delete">
+        {{ delete_form.hidden_tag() }}
+        <p>{{ delete_form.submit(class="btn-delete") }}</p>
         </form>
 
 
