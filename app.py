@@ -1,3 +1,4 @@
+"""
 from flask import Flask, request, render_template, redirect, session, flash
 from flask_scss import Scss
 from dotenv import load_dotenv
@@ -19,6 +20,7 @@ Scss(app)
 @app.route("/")
 def index():
     return render_template("index.html")
+"""
 """
 @app.route("/join_session/<int:id>", methods=["GET"])
 def join_session():
@@ -78,15 +80,16 @@ def get_session():
     return f'<p>{StudySession().query.get(1)}</p> <p>{StudySession().query.get(1)}</p> <p>{StudySession().query.get(1)}</p>'
 """
 
+
+"""
 @app.route("/temp_session", methods = ["POST"])
 def temp_session_post():
     data = request.form.get("word")     
     print(data)
     return f'<p>{data}</p>'
-@app.route("/temp2_session", methods = ["GET"])
+@app.route("/temp_session", methods = ["GET"])
 def temp_session_get():
     return f'<p>n</p>'
-
 
 if __name__ in "__main__":
     with app.app_context():
@@ -95,3 +98,4 @@ if __name__ in "__main__":
         
 
     app.run(debug=True)
+"""
