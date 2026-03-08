@@ -18,12 +18,21 @@ Scss(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
-"""
-@app.route("/join_session/<int:id>", methods=["GET"])
-def join_session():
+    sessions = StudySession.query.all()
+    join_form = JoinSessionForm()
+    delete_form = DeleteSessionForm()
+    # if form.validate_on_submit():
+    #     return redirect(f"/join_session/{}")
+    return render_template("index.html", sessions=sessions, join_form=join_form, delete_form=delete_form)
+
+
+@app.route("/join_session/<int:id>", methods=["POST", "GET"])
+def join_session(id):
     session = StudySession.query.get(id)
 
+    if not session:
+        return "Session not found", 404
+    
     if session.request_only:
         flash("Request sent.")
 
@@ -32,12 +41,14 @@ def join_session():
     
     elif session.participants >= session.capacity:
         flash("Session capacity filled.")
+    db.session.commit()
     
     return redirect("/")
 
  
 @app.route("/create_session", methods=["POST"])
 def create_session():
+    # form = CreateSessionForm()
     title = request.form.get("title")
     subject = request.form.get("subject")
     location = request.form.get("location")
@@ -48,45 +59,14 @@ def create_session():
         db.session.add(new_session)
         db.session.commit()
         flash("Study session created successfully!")
+        return redirect("/")
     except Exception as e:
         db.session.rollback()
         flash("An error occurred while saving.")
         print(f"Error: {e}")
+    # return render_template("create_session.html", form=form)
 
-    return redirect("/")
-
-
-@app.route("/get_session", methods=["GET"])
-def get_session():
-    return f'<h3>{ StudySession.query.get(1).title}'
-"""
-"""
-@app.route("/create_session", methods=["POST"])
-def create_session():
-    print(request.form)
-    title1 = request.form.get("title")
-    subject1 = request.form.get("subject")
-    location1 = request.form.get("location")
-    req_only = request.form.get("req_only")
-    first = StudySession(title = title1, subject = subject1, location = location1, request_only = req_only)
-    db.session.add(first)
-    db.session.commit()
-    return redirect("/")
-
-@app.route("/get_session", methods=["GET"])
-def get_session():
-    return f'<p>{StudySession().query.get(1)}</p> <p>{StudySession().query.get(1)}</p> <p>{StudySession().query.get(1)}</p>'
-"""
-
-@app.route("/temp_session", methods = ["POST"])
-def temp_session_post():
-    data = request.form.get("word")     
-    print(data)
-    return f'<p>{data}</p>'
-@app.route("/temp2_session", methods = ["GET"])
-def temp_session_get():
-    return f'<p>n</p>'
-
+    
 
 if __name__ in "__main__":
     with app.app_context():
