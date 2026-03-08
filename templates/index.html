@@ -1,6 +1,33 @@
 {% extends "base.html" %}
 
 {% block body %}
+<div class="top-bar">
+<form method="GET" action="/">
+    <label style="font-family: 'Keania One', sans-serif; color: #005A43;">Filter by Subject</label>
+    <select name="subject" onchange="this.form.submit()">
+        <option value="">All Subjects</option>
+        {% for s in subjects %}
+            <option value="{{ s }}" {% if s == selected %}selected{% endif %}>{{ s }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<div class="create-form">
+<h2>Create Study Session</h2>
+<form method="POST" action="/create_session">
+    {{ create_form.hidden_tag() }}
+    <p>{{ create_form.title.label }} {{ create_form.title() }}</p>
+    <p>{{ create_form.subject.label }} {{ create_form.subject() }}</p>
+    <p>{{ create_form.location.label }} {{ create_form.location() }}</p>
+    <p>{{ create_form.time.label }} {{ create_form.time() }}</p>
+    <p>{{ create_form.request_only() }} {{ create_form.request_only.label }}</p>
+    <p>{{ create_form.submit(class="btn-join") }}</p>
+</form>
+</div>
+</div>
+
+<h2 class="sessions-heading">Current Study Sessions</h2>
+
 <div class="session-grid">
 {% for session in sessions %}
     <div class="session-card">
@@ -8,24 +35,24 @@
         <p><b>Subject: </b> {{session.subject}}</p>
         <p><b>Location: </b>{{session.location}}</p>
         <p><b>Time: </b>{{session.time.strftime("%b %d • %I:%M %p")}}</p>
+        {% if session.description %}
+        <p><b>Description: </b> {{session.description}}</p>
+        {% endif %}
         <p>{{session.participants}}/{{session.capacity}} Participants</p>
 
-        <form action="/join_session/{{session.id}}" method="POST" novalidate class="btn-join">
+        {% if session.id in joined %}
+            <input type="button" value="Joined" class="btn-joined" disabled>
+        {% else %}
+        <form action="/join_session/{{session.id}}" method="POST" novalidate>
         {{ join_form.hidden_tag() }}
-        <p>
-            {{ join_form.submit(value="Request To Join" if session.request_only else "Join", class="btn-join")}} <br>
-        </p>
+        <p>{{ join_form.submit(value="Request To Join" if session.request_only else "Join", class="btn-join") }}</p>
         </form>
-        <form action="/delete_session/{{session.id}}" method="POST" class="btn-delete">
+        {% endif %}
+        <form action="/delete_session/{{session.id}}" method="POST">
         {{ delete_form.hidden_tag() }}
         <p>{{ delete_form.submit(class="btn-delete") }}</p>
         </form>
-
-
     </div>
 {% endfor %}
 </div>
 {% endblock %}
-
-
-
