@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+<h1>Create Study Session</h1>
+<form method="POST">
+{{ form.hidden_tag() }}
+<p>
+    {{form.title.label}}
+    {{form.title()}}
+</p>
+
+<p>
+{{form.subject.label}}
+{{form.subject()}}
+
+</p>
+<p>
+    {{form.location.label}}
+    {{form.location()}}
+</p>
+<p>
+{{form.time.label}}
+    {{form.time()}}
+</p>
+<p>
+
+{{form.description.label}}
+    {{form.description()}}
+</p>
+<p>
+    {{form.capacity.label}}
+    {{form.capacity()}}
+ </p>
+<p>
+    {{form.request_only.label}}
+    {{form.request_only()}}
+    </p>
+<p>
+     {{ form.submit() }}
+    </p>
+
+</form>
+
+<a href="/">Back to Sessions</a>
+{% endblock %}

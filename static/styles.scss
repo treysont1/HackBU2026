@@ -50,7 +50,60 @@ a{
 .navButtons{
   list-style-type: none;
   display: flex;
-  font-size: 20px;
+ 
   /*justify-content: center;!-->*/
   justify-content: space-evenly;
+}
+h1{
+  font-family: "Keania One", sans-serif;
+  font-size: 35 px;
+  text-align: center;
+  margin-top: 30 px;
+  margin-bottom: 20px;
+}
+
+form{
+  background-color: aqua;
+  border: 2px solid black;
+  border-radius: 12px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:30px;
+  padding: 20px;
+}
+
+form p{
+  font-family: "Keania One", sans-serif;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.contentSection{
+  padding:40px;
+}
+
+.sectionTitle{
+  font-family: "Keania One", sans-serif;
+  font-size:28px;
+  margin-bottom:20px;
+}
+
+.groupCard{
+  background:white;
+  width:260px;
+  padding:20px;
+  margin:15px;
+  border-radius:10px;
+  display:inline-block;
+  text-align:center;
+}
+
+.groupCard button{
+  margin-top:10px;
+  padding: 15px;
+  border:none;
+  background-color:#00bcd4;
+  border-radius:5px;
+  cursor:pointer;
 }
