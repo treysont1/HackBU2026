@@ -7,15 +7,11 @@
         <h3>{{session.title}}</h3>
         <p><b>Subject: </b> {{session.subject}}</p>
         <p><b>Location: </b>{{session.location}}</p>
+        <p><b>Time: </b>{{session.time.strftime("%b %d • %I:%M %p")}}</p>
         <p>{{session.participants}}/{{session.capacity}} Participants</p>
 
         <form action="" method="POST" novalidate>
         {{ form.hidden_tag() }}
-        <!-- {% if session.request_only %}
-            {% set message = "Submit Join Request" %}
-        {% else %}
-            {% set message = "Join" %}
-        {% endif %} -->
         <p>
             {{ form.submit(value="Request To Join" if session.request_only else "Join")}} <br>
         </p>
