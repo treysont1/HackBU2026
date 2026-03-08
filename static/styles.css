@@ -1,32 +1,31 @@
-.titleArea{
+.titleArea {
   display: flex;
   padding-bottom: px;
   justify-content: space-between;
 }
 
-body{
+body {
   background-color: aquamarine;
 }
 
-#siteTitle{
+#siteTitle {
   font-family: "Keania One", sans-serif;
   font-weight: 400;
   font-size: 20px;
   font-style: normal;
   background-color: aqua;
   background-size: 130px;
+  width: -moz-fit-content;
   width: fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   padding: 5px;
   margin-right: 10px;
   border-radius: 10px;
   letter-spacing: 5px;
-
-  
-
 }
 
-#siteQuote{
+#siteQuote {
   font-family: "Keania One", sans-serif;
   font-size: 40px;
   margin: 20px;
@@ -34,7 +33,7 @@ body{
   padding-right: 15px;
 }
 
-.navBar{
+.navBar {
   font-family: "Keania One", sans-serif;
   margin-left: 0px;
   padding-left: 0px;
@@ -42,15 +41,14 @@ body{
   border-color: black;
 }
 
-a{
-  color:black
-
+a {
+  color: black;
 }
 
-.navButtons{
+.navButtons {
   list-style-type: none;
   display: flex;
   font-size: 20px;
   /*justify-content: center;!-->*/
   justify-content: space-evenly;
-}
+}/*# sourceMappingURL=styles.css.map */
