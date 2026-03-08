@@ -65,7 +65,8 @@ def create_session():
         location = form.location.data
         capacity = form.capacity.data
         req_only = form.request_only.data
-        new_session = StudySession(title=title, subject=subject,location=location,capacity = int(capacity) if capacity else 10,request_only=req_only)
+        time = form.time.data
+        new_session = StudySession(title=title, subject=subject,location=location,capacity = int(capacity) if capacity else 10,request_only=req_only, time=time)
         try:
             db.session.add(new_session)
             db.session.commit()
