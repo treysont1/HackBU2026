@@ -477,3 +477,5 @@ data = """
 parsed = json.loads(data)
  
 SUBJECTS = [item["code"] for item in parsed]
+
+subject_choices = [(s, s) for s in SUBJECTS]
