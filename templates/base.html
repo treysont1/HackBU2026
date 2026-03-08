@@ -7,8 +7,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Keania+One&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Keania+One&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="styles.css">
-        <title>Studyr</title>
+        <link rel="stylesheet" href="{{url_for("static", filename="styles.css")}}">
+        <title>StudyMatch</title>
     </head>
     <body>
         <div class = "titleArea">
@@ -27,7 +27,7 @@
         </nav>
 
         
-        {% block content %}<!--index templete here-->{% endblock %}
+        {% block body %}<!--index templete here-->{% endblock %}
         
     </body>
 </html>
