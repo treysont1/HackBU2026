@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from models import db, User, Posts, StudySession
 from forms import CreateSessionForm, JoinSessionForm, DeleteSessionForm
 import os
+from subjects import SUBJECTS
 
 app = Flask(__name__)
 
@@ -21,10 +22,13 @@ def index():
     sessions = StudySession.query.all()
     join_form = JoinSessionForm()
     delete_form = DeleteSessionForm()
+    create_form = CreateSessionForm()
     joined = flask_session.get('joined', [])
     # if form.validate_on_submit():
     #     return redirect(f"/join_session/{}")
-    return render_template("index.html", sessions=sessions, join_form=join_form, delete_form=delete_form, joined=joined)
+    subject_filter = request.args.get("subject")
+    sessions = StudySession.query.filter_by(subject=subject_filter).all() if subject_filter else StudySession.query.all()
+    return render_template("index.html", sessions=sessions, join_form=join_form, delete_form=delete_form, create_form=create_form, joined=joined, subjects=SUBJECTS, selected=subject_filter)
 
 
 @app.route("/join_session/<int:id>", methods=["POST", "GET"])
@@ -66,13 +70,11 @@ def create_session():
             db.session.add(new_session)
             db.session.commit()
             flash("Study session created successfully!")
-            return redirect("/")
         except Exception as e:
             db.session.rollback()
             flash("An error occurred while saving.")
             print(f"Error: {e}")
-    else:
-        return render_template("create_session.html", form=form)
+    return redirect("/")
 
 @app.route("/delete_session/<int:id>", methods=["POST"])
 def delete_session(id):
