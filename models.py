@@ -5,6 +5,7 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), unique=True)
+    
 
 class StudySession(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -12,10 +13,13 @@ class StudySession(db.Model):
     subject = db.Column(db.String(50), nullable=False)
     location = db.Column(db.String(100), nullable=False)
     time = db.Column(db.DateTime)
+    capacity = db.Column(db.Integer)
 
     description = db.Column(db.String(200))
 
     participants = db.Column(db.Integer, default=1)
+
+    request_only = db.Column(db.Boolean, default = False)
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     
