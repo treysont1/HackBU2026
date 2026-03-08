@@ -9,7 +9,7 @@ class CreateSessionForm(FlaskForm):
     subject = SelectField('Subject', choices=subject_choices, validators=[DataRequired()])
     location = StringField('Location', validators=[DataRequired()])
     time = DateTimeLocalField('Date')
-    description = StringField('Short Description', validators=[DataRequired()])
+    description = StringField('Short Description')
     capacity = IntegerField("Limit of People")
     request_only = BooleanField('Request Only')
     submit = SubmitField('Create')
