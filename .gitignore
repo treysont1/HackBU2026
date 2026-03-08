@@ -4,3 +4,4 @@ venv/
 __pycache__
 instance/
 treyson_notes.txt
+postman/
