@@ -46,7 +46,7 @@ def join_session(id):
     return redirect("/")
 
  
-@app.route("/create_session", methods=["POST"])
+@app.route("/create_session", methods=["POST", "GET"])
 def create_session():
     # form = CreateSessionForm()
     title = request.form.get("title")
