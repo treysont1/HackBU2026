@@ -2,6 +2,22 @@
 
 {% block body %}
 <div class="top-bar">
+<div class="create-form">
+<h2>Create Study Session</h2>
+<form method="POST" action="/create_session">
+    {{ create_form.hidden_tag() }}
+    <p>{{ create_form.title.label }} {{ create_form.title() }}</p>
+    <p>{{ create_form.subject.label }} {{ create_form.subject() }}</p>
+    <p>{{ create_form.location.label }} {{ create_form.location() }}</p>
+    <p>{{ create_form.capacity.label }} {{ create_form.capacity() }}</p>
+    <p>{{ create_form.time.label }} {{ create_form.time() }}</p>
+    <p>{{ create_form.request_only() }} {{ create_form.request_only.label }}</p>
+    <p>{{ create_form.submit(class="btn-join") }}</p>
+</form>
+</div>
+</div>
+
+<h2 class="sessions-heading">Current Study Sessions</h2>
 <form method="GET" action="/">
     <label style="font-family: 'Keania One', sans-serif; color: #005A43;">Filter by Subject</label>
     <select name="subject" onchange="this.form.submit()">
@@ -11,23 +27,6 @@
         {% endfor %}
     </select>
 </form>
-
-<div class="create-form">
-<h2>Create Study Session</h2>
-<form method="POST" action="/create_session">
-    {{ create_form.hidden_tag() }}
-    <p>{{ create_form.title.label }} {{ create_form.title() }}</p>
-    <p>{{ create_form.subject.label }} {{ create_form.subject() }}</p>
-    <p>{{ create_form.location.label }} {{ create_form.location() }}</p>
-    <p>{{ create_form.time.label }} {{ create_form.time() }}</p>
-    <p>{{ create_form.request_only() }} {{ create_form.request_only.label }}</p>
-    <p>{{ create_form.submit(class="btn-join") }}</p>
-</form>
-</div>
-</div>
-
-<h2 class="sessions-heading">Current Study Sessions</h2>
-
 <div class="session-grid">
 {% for session in sessions %}
     <div class="session-card">

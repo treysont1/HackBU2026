@@ -161,14 +161,17 @@ a{
 .top-bar {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
   gap: 20px;
   padding: 20px;
+  justify-content: center;
 }
 
 .sessions-heading {
   font-family: "Keania One", sans-serif;
   color: #005A43;
   padding: 0 20px 10px 20px;
+  text-align: center;
 }
 
 .top-bar select {
