@@ -477,5 +477,3 @@ data = """
 parsed = json.loads(data)
  
 SUBJECTS = [item["code"] for item in parsed]
-
-print(SUBJECTS)
